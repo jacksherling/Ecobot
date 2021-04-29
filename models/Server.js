@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
-const User = require("./User");
+const Member = require("./Member");
 
 const serverSchema = mongoose.Schema({
-    users: [[User]],
+    members: Array,
+    id: String,
+    startingBalance: Number,
 });
 
 module.exports = Server = mongoose.model("server", serverSchema);
