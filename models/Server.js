@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const Member = require("./Member");
+// const Member = require("./Member");
 
 const serverSchema = mongoose.Schema({
-    members: Array,
+    members: [Object],
     id: String,
     startingBalance: Number,
 });

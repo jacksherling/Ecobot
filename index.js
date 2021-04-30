@@ -1,16 +1,21 @@
 // import packages
 require("dotenv").config();
 const Discord = require("discord.js");
-const { Client, MessageEmbed } = require("discord.js");
+const { Client, MessageEmbed, Intents } = require("discord.js");
 const { genEmbed } = require("./utility");
 
 // database
 require("./db");
 const Server = require("./models/Server");
-const Member = require("./models/Member");
+// const Member = require("./models/Member");
 
 // initialize API
-const client = new Discord.Client();
+// const intents = new Intents([
+//     Intents.NON_PRIVILEGED, // include all non-privileged intents, would be better to specify which ones you actually need
+//     "GUILD_MEMBERS", // lets you request guild members (i.e. fixes the issue)
+// ]);
+// const client = new Discord.Client({ ws: { intents } });
+const client = new Client();
 client.login(process.env.DISCORD_API_KEY);
 
 const PREFIX = process.env.PREFIX;
@@ -62,7 +67,9 @@ client.on("message", async (message) => {
     const serverId = message.guild.id;
     let server = await Server.findOne({ id: serverId });
     if (!server) {
+        console.log(true);
         server = await initializeServer(serverId, message);
+        console.log(server);
     }
     const requestedCommand = commands.find((v) => v.name == command);
     if (
@@ -98,16 +105,17 @@ async function initializeServer(serverId, message) {
             `Initializing Ecobot for ${message.guild.name}...`
         );
     });
+    console.log("0");
     let allMembers = await client.guilds.cache.get(serverId).members.fetch();
-    allMembers = allMembers.map(
-        (v) =>
-            new Member({
-                name: v.user.username,
-                balance: 0,
-                serverId: serverId,
-                id: v.id,
-            })
-    );
+    console.log("1");
+    allMembers = allMembers.map((v) => {
+        return {
+            name: v.user.username,
+            balance: 0,
+            serverId: serverId,
+            id: v.id,
+        };
+    });
     const newServer = new Server({
         members: allMembers,
         id: serverId,

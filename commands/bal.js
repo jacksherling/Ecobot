@@ -1,5 +1,5 @@
 const { genEmbed } = require("../utility");
-const { command, Member, Server } = require("./command");
+const { command, Server } = require("./command");
 
 const bal = new command(
     "bal",
@@ -10,15 +10,15 @@ const bal = new command(
             msg.mentions.users.first() != null
                 ? msg.mentions.users.first()
                 : msg.author;
-        const member = server.members.find((v) => v.id == mentioned);
+        let member = server.members.find((v) => v.id == mentioned);
         if (!member) {
             member = {
                 balance: server.startingBalance,
-                name: mentioned.name,
+                name: author.username,
                 serverId: server.id,
                 id: mentioned.id,
             };
-            server.members.push(new Member(member));
+            server.members.push(member);
             await server.save();
             return;
         }

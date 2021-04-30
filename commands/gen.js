@@ -1,5 +1,5 @@
 const { genEmbed } = require("../utility");
-const { command, Member, Server } = require("./command");
+const { command, Server } = require("./command");
 
 const gen = new command(
     "gen",
@@ -7,17 +7,39 @@ const gen = new command(
     "gen [$] [user/(DEFAULT ALL USERS)]",
     async (msg, author, server, words) => {
         const money = +words[0];
-        console.log(money);
         const mentioned = msg.mentions.users.first();
+
+        if (money < 0) {
+            genEmbed(msg.channel, "Money Allocation Error", (embed) => {
+                embed.setDescription(`Allocated funds must be positive.`);
+            });
+            return;
+        }
+
         if (mentioned == null) {
             server.members = server.members.map((m) => {
-                m.bal += money;
+                m.balance += money;
                 return m;
             });
+
+            server.markModified("members");
             await server.save();
+
             genEmbed(msg.channel, "Money Generated", (embed) => {
                 embed.setDescription(
-                    `$${money} has been successfully allocated.`
+                    `$${money} has been successfully allocated to all server members.`
+                );
+            });
+            return;
+        } else {
+            const changeMember = server.members.find((v) => v.id == mentioned);
+            changeMember.balance += money;
+            server.markModified("members");
+            await server.save();
+
+            genEmbed(msg.channel, "Money Generated", (embed) => {
+                embed.setDescription(
+                    `$${money} has been successfully allocated to ${changeMember.name}.`
                 );
             });
             return;

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Member = require("../models/Member");
 const Server = require("../models/Server");
 require("../db");
 
@@ -13,4 +12,4 @@ class command {
     }
 }
 
-module.exports = { command, Member, Server };
+module.exports = { command, Server };
