@@ -1,0 +1,26 @@
+{
+  "name": "ecobot",
+  "version": "1.0.0",
+  "description": "Discord Economy Bot.",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^8.2.0",
+    "mongoose": "^5.12.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacksherling/Ecobot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacksherling/Ecobot/issues"
+  },
+  "homepage": "https://github.com/jacksherling/Ecobot#readme"
+}
