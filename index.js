@@ -26,7 +26,11 @@ client.on("ready", () => {
 });
 
 // commands
-const commands = [require("./commands/bal"), require("./commands/gen")];
+const commands = [
+    require("./commands/bal"),
+    require("./commands/gen"),
+    require("./commands/pay"),
+];
 // const commands = {
 //     help: function (msg, author, words) {
 //         let str = "Commands you can request:\n";
