@@ -31,6 +31,7 @@ const commands = [
     require("./commands/pay"),
     require("./commands/flip"),
     require("./commands/setstartingbalance"),
+    require("./commands/leaderboard"),
 ];
 
 function help(msg) {
