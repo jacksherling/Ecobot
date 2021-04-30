@@ -7,7 +7,6 @@ const { genEmbed } = require("./utility");
 // database
 require("./db");
 const Server = require("./models/Server");
-// const Member = require("./models/Member");
 
 // initialize API
 // const intents = new Intents([
@@ -33,15 +32,6 @@ const commands = [
     require("./commands/flip"),
     require("./commands/setstartingbalance"),
 ];
-// const commands = {
-//     help: function (msg, author, words) {
-//         let str = "Commands you can request:\n";
-//         for (command in this) {
-//             str += PREFIX + command + "\n";
-//         }
-//         msg.channel.send(str);
-//     },
-// };
 
 function help(msg) {
     let results = commands.map((v) => {
@@ -87,9 +77,7 @@ client.on("message", async (message) => {
     const serverId = message.guild.id;
     let server = await Server.findOne({ id: serverId });
     if (!server) {
-        console.log(true);
         server = await initializeServer(serverId, message);
-        console.log(server);
     }
     const requestedCommand = commands.find((v) => v.name == command);
     if (
@@ -125,9 +113,7 @@ async function initializeServer(serverId, message) {
             `Initializing Ecobot for ${message.guild.name}...`
         );
     });
-    console.log("0");
     let allMembers = await client.guilds.cache.get(serverId).members.fetch();
-    console.log("1");
     allMembers = allMembers.map((v) => {
         return {
             name: v.user.username,
