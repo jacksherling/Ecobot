@@ -30,6 +30,8 @@ const commands = [
     require("./commands/bal"),
     require("./commands/gen"),
     require("./commands/pay"),
+    require("./commands/flip"),
+    require("./commands/setstartingbalance"),
 ];
 // const commands = {
 //     help: function (msg, author, words) {
@@ -52,6 +54,20 @@ function help(msg) {
         embed.addFields(results);
     });
 }
+
+client.on("guildMemberAdd", async (member) => {
+    const serverId = member.guild.id;
+    let server = await Server.findOne({ id: serverId });
+
+    server.members.push({
+        name: member.user.username,
+        balance: server.startingBalance,
+        serverId: serverId,
+        id: member.id,
+    });
+    server.markModified("members");
+    await server.save();
+});
 
 client.on("message", async (message) => {
     if (message.author.bot) return;

@@ -9,6 +9,13 @@ const gen = new command(
         const money = +words[0];
         const mentioned = msg.mentions.users.first();
 
+        if (isNaN(money)) {
+            genEmbed(msg.channel, "Input Error", (embed) => {
+                embed.setDescription(`Money must be a number.`);
+            });
+            return;
+        }
+
         if (money < 0) {
             genEmbed(msg.channel, "Money Allocation Error", (embed) => {
                 embed.setDescription(`Allocated funds must be positive.`);
