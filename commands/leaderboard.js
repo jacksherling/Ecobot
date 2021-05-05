@@ -1,7 +1,7 @@
 const { genEmbed } = require("../utility");
 const { command, Server } = require("./command");
 
-const gen = new command(
+const leaderboard = new command(
     "leaderboard",
     "Displays top 10 members with the most money.",
     "leaderboard",
@@ -23,4 +23,4 @@ const gen = new command(
     false
 );
 
-module.exports = gen;
+module.exports = leaderboard;

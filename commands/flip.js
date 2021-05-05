@@ -1,7 +1,7 @@
 const { genEmbed } = require("../utility");
 const { command, Server } = require("./command");
 
-const gen = new command(
+const flip = new command(
     "flip",
     "Double your money or lose all of it.",
     "flip",
@@ -20,4 +20,4 @@ const gen = new command(
     false
 );
 
-module.exports = gen;
+module.exports = flip;
