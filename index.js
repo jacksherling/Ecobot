@@ -32,6 +32,7 @@ const commands = [
     require("./commands/flip"),
     require("./commands/setstartingbalance"),
     require("./commands/leaderboard"),
+    require("./commands/reset"),
 ];
 
 function help(msg) {
