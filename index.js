@@ -38,7 +38,7 @@ const commands = [
 function help(msg) {
     let results = commands.map((v) => {
         return {
-            name: v.name,
+            name: v.name + (v.bankOnly ? " (BANK ONLY)" : ""),
             value: `${v.description}\nuse: ${PREFIX + v.usage}`,
         };
     });
