@@ -11,17 +11,6 @@ const bal = new command(
                 ? msg.mentions.users.first()
                 : msg.author;
         let member = server.members.find((v) => v.id == mentioned);
-        // if (!member) {
-        //     member = {
-        //         balance: server.startingBalance,
-        //         name: author.username,
-        //         serverId: server.id,
-        //         id: mentioned.id,
-        //     };
-        //     server.members.push(member);
-        //     await server.save();
-        //     return;
-        // }
         genEmbed(msg.channel, `${member.name}'s Wallet`, (embed) => {
             embed.setDescription(`$${member.balance}`);
         });

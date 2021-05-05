@@ -13,7 +13,7 @@ const reset = new command(
         await server.save();
         genEmbed(msg.channel, "Reset Successful", (embed) => {
             embed.setDescription(
-                `All server members' balance has been reset to ${server.startingBalance}.`
+                `All server members' balance has been reset to $${server.startingBalance}.`
             );
         });
     },

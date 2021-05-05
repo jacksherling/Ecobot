@@ -25,7 +25,9 @@ const gen = new command(
 
         if (mentioned == null) {
             server.members = server.members.map((m) => {
-                m.balance += money;
+                const newBalance = m.balance + money;
+                m.balance =
+                    newBalance == Infinity ? Number.MAX_VALUE : newBalance || 0;
                 return m;
             });
 

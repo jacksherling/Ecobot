@@ -30,8 +30,13 @@ const pay = new command(
             return;
         }
 
-        server.members.find((v) => v.id == author.id).balance -= money;
-        server.members.find((v) => v.id == mentioned).balance += money;
+        const sender = server.members.find((v) => v.id == author.id);
+        sender.balance = sender.balance - money || 0;
+        const receiver = server.members.find((v) => v.id == mentioned);
+        receiver.balance =
+            receiver.balance + money == Infinity
+                ? Number.MAX_VALUE
+                : receiver.balance + money || 0;
 
         server.markModified("members");
         await server.save();
