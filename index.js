@@ -33,6 +33,7 @@ const commands = [
     require("./commands/setstartingbalance"),
     require("./commands/leaderboard"),
     require("./commands/reset"),
+    require("./commands/rankup"),
 ];
 
 function help(msg) {
@@ -56,6 +57,7 @@ client.on("guildMemberAdd", async (member) => {
         balance: server.startingBalance,
         serverId: serverId,
         id: member.id,
+        tier: 0,
     });
     server.markModified("members");
     await server.save();
@@ -122,6 +124,7 @@ async function initializeServer(serverId, message) {
             balance: 0,
             serverId: serverId,
             id: v.id,
+            tier: 0,
         };
     });
     const newServer = new Server({
