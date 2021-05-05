@@ -1,7 +1,7 @@
 const { genEmbed } = require("../utility");
 const { command, Server } = require("./command");
 
-const gen = new command(
+const setStartingBalance = new command(
     "setstartingbalance",
     "Sets the balance of new members of the server.",
     "setstartingbalance [$]",
@@ -27,4 +27,4 @@ const gen = new command(
     true
 );
 
-module.exports = gen;
+module.exports = setStartingBalance;

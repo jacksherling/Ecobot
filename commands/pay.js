@@ -1,7 +1,7 @@
 const { genEmbed } = require("../utility");
 const { command, Server } = require("./command");
 
-const gen = new command(
+const pay = new command(
     "pay",
     "Gives specified user money from sender's wallet.",
     "pay [$] [user]",
@@ -46,4 +46,4 @@ const gen = new command(
     false
 );
 
-module.exports = gen;
+module.exports = pay;

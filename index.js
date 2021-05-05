@@ -32,12 +32,13 @@ const commands = [
     require("./commands/flip"),
     require("./commands/setstartingbalance"),
     require("./commands/leaderboard"),
+    require("./commands/reset"),
 ];
 
 function help(msg) {
     let results = commands.map((v) => {
         return {
-            name: v.name,
+            name: v.name + (v.bankOnly ? " (BANK ONLY)" : ""),
             value: `${v.description}\nuse: ${PREFIX + v.usage}`,
         };
     });
