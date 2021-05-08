@@ -27,12 +27,13 @@ client.on("ready", () => {
 // commands
 const commands = [
     require("./commands/bal"),
-    require("./commands/gen"),
     require("./commands/pay"),
     require("./commands/flip"),
-    require("./commands/setstartingbalance"),
     require("./commands/leaderboard"),
+    require("./commands/gen"),
+    require("./commands/setstartingbalance"),
     require("./commands/reset"),
+    require("./commands/settiercost.js"),
 ];
 
 function help(msg) {
@@ -128,6 +129,7 @@ async function initializeServer(serverId, message) {
         members: allMembers,
         id: serverId,
         startingBalance: 0,
+        tierOneCost: 100
     });
     await newServer.save();
     return newServer;
