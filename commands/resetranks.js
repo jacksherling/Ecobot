@@ -19,6 +19,8 @@ const resetRanks = new command(
             }
             m.tier = 0;
         })
+        server.markModified("members");
+        await server.save();
         genEmbed(msg.channel, "Reset Successful", (embed) => {
             embed.setDescription(`All Tier ranks have been reset.`);
         });

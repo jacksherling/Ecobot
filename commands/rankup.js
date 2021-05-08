@@ -33,7 +33,7 @@ const rankUp = new command(
             await server.save();
             genEmbed(msg.channel, "Rankup Successful", (embed) => {
                 embed.setDescription(
-                    `:arrow_up: You have successfully ranked-up to Tier ${member.tier}, costing you $${cost}.`
+                    `:arrow_up: You have successfully ranked-up to Tier ${member.tier}, costing you $${(cost).toFixed(2)}.`
                 );
             });
         } else {
