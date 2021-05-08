@@ -11,19 +11,21 @@ const rankUp = new command(
         const cost = tier1 * 1.1 ** member.tier;
         if (member.balance >= cost) {
             let previousRole = msg.guild.roles.cache.find(
-                (role) => role.name === "Tier " + member.tier
+                (role) => role.name === "Ecobot Tier " + member.tier
             );
-            msg.member.roles.remove(previousRole);
+            if (previousRole) {
+                msg.member.roles.remove(previousRole);
+            }
             member.tier++;
             member.balance -= cost;
             let role = msg.guild.roles.cache.find(
-                (role) => role.name === "Tier " + member.tier
+                (role) => role.name === "Ecobot Tier " + member.tier
             );
             if (!role) {
                 role = await msg.guild.roles.create({
                     data: {
-                        name: "Tier " + member.tier,
-                        color: "BLUE",
+                        name: "Ecobot Tier " + member.tier,
+                        color: "GREEN",
                     },
                 });
             }

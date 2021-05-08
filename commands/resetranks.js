@@ -11,9 +11,8 @@ const resetRanks = new command(
         server.members.forEach(m => {
             let member = allMembers.get(m.id);
             let role = member.roles.cache.find(
-                (role) => role.name === "Tier " + m.tier
+                (role) => role.name === "Ecobot Tier " + m.tier
             );
-            console.log(role, "Tier " + m.tier)
             if (role != undefined) {
               msg.member.roles.remove(role);
             }
