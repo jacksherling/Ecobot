@@ -34,6 +34,7 @@ const commands = [
     require("./commands/setstartingbalance"),
     require("./commands/reset"),
     require("./commands/settiercost.js"),
+    require("./commands/resetranks.js"),
 ];
 
 function help(msg) {
