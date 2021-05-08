@@ -6,7 +6,7 @@ const rankUp = new command(
     "Increase your rank if you have sufficient funds.",
     "rankup",
     async (msg, author, server, words) => {
-        const tier1 = 100;
+        const tier1 = server.tierOneCost;
         const member = server.members.find((v) => v.id == author.id);
         const cost = tier1 * 1.1 ** member.tier;
         if (member.balance >= cost) {
@@ -33,7 +33,7 @@ const rankUp = new command(
             await server.save();
             genEmbed(msg.channel, "Rankup Successful", (embed) => {
                 embed.setDescription(
-                    `:arrow_up: You have successfully ranked-up to Tier ${member.tier}`
+                    `:arrow_up: You have successfully ranked-up to Tier ${member.tier}, costing you $${cost}.`
                 );
             });
         } else {
