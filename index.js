@@ -27,11 +27,11 @@ client.on("ready", () => {
 // commands
 const commands = [
     require("./commands/bal"),
-    require("./commands/gen"),
     require("./commands/pay"),
     require("./commands/flip"),
-    require("./commands/setstartingbalance"),
     require("./commands/leaderboard"),
+    require("./commands/gen"),
+    require("./commands/setstartingbalance"),
     require("./commands/reset"),
     require("./commands/settiercost.js"),
 ];
