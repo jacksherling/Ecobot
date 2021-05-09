@@ -31,6 +31,7 @@ const commands = [
     require("./commands/flip"),
     require("./commands/leaderboard"),
     require("./commands/rankup"),
+    require("./commands/tier"),
     require("./commands/gen"),
     require("./commands/setstartingbalance"),
     require("./commands/reset"),
