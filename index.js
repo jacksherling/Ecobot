@@ -39,15 +39,20 @@ const commands = [
     require("./commands/resetranks.js"),
 ];
 
-function help(msg) {
-    let results = commands.map((v) => {
-        return {
-            name: v.name + (v.bankOnly ? " (BANK ONLY)" : ""),
-            value: `${v.description}\nuse: ${PREFIX + v.usage}`,
-        };
-    });
+function help(msg, bank) {
+    let results = commands
+        .filter((v) => bank == v.bankOnly)
+        .map((v) => {
+            return {
+                name: v.name + (v.bankOnly ? " (BANK ONLY)" : ""),
+                value: `${v.description}\nuse: ${PREFIX + v.usage}`,
+            };
+        });
     genEmbed(msg.channel, "Ecobot Help Center", (embed) => {
         embed.addFields(results);
+        embed.setDescription(
+            `Use **${PREFIX}help bank** to view commands exclusive to the **bank** rank.`
+        );
     });
 }
 
@@ -72,7 +77,7 @@ client.on("message", async (message) => {
     const words = message.content.split(" ");
     const command = words.shift().substring(PREFIX.length).toLowerCase();
     if (command == "help") {
-        help(message);
+        help(message, words[0] ? words[0].toLowerCase() == "bank" : false);
         return;
     }
     if (!commands.some((v) => v.name == command)) {
@@ -134,7 +139,7 @@ async function initializeServer(serverId, message) {
         members: allMembers,
         id: serverId,
         startingBalance: 0,
-        tierOneCost: 100
+        tierOneCost: 100,
     });
     await newServer.save();
     return newServer;
