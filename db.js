@@ -7,7 +7,3 @@ mongoose.connect(mongoDBLink, {
     useUnifiedTopology: true,
     useCreateIndex: true,
 });
-
-// const server = require("./models/Server");
-
-// module.exports = server;
