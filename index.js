@@ -18,7 +18,6 @@ const client = new Client();
 client.login(process.env.DISCORD_API_KEY);
 
 const PREFIX = "$";
-const EMBED_COLOR = "#00CB09";
 
 client.on("ready", () => {
     console.log("The bot is running");
